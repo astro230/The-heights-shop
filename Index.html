@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Heights Store</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ color:white;
+ background:linear-gradient(180deg,#06152d,#071d3c 55%,#020914);
+}
+header{
+ padding:25px 18px;
+ text-align:center;
+ background:linear-gradient(135deg,#071b38,#064b91);
+ border-bottom:2px solid #168cff;
+}
+.logo{font-size:30px;font-weight:900;letter-spacing:3px}
+header p{color:#b8dfff}
+nav{display:flex;justify-content:center;gap:20px;padding:15px;flex-wrap:wrap}
+nav a{color:#a9d9ff;text-decoration:none;font-weight:bold}
+.hero{text-align:center;padding:55px 15px 35px}
+.hero h1{font-size:38px;text-shadow:0 0 20px #168cff}
+.hero p{color:#b8cce4}
+.btn{
+ display:inline-block;background:#0878e8;color:white;
+ padding:12px 20px;border-radius:8px;border:0;
+ text-decoration:none;font-weight:bold;cursor:pointer;
+}
+section{max-width:1050px;margin:30px auto;padding:0 16px}
+.section-title{border-left:4px solid #168cff;padding-left:12px}
+.products{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:16px;margin-top:20px
+}
+.card{
+ background:linear-gradient(145deg,#102b4c,#08182e);
+ border:1px solid #17518b;border-radius:13px;
+ padding:20px;box-shadow:0 5px 20px #0008;
+}
+.card h3{margin-top:0}
+.price{font-size:22px;color:#54b4ff;font-weight:bold}
+.card button{width:100%;margin-top:12px}
+.info{
+ background:#0d2543;border:1px solid #1765a8;
+ padding:22px;border-radius:12px;line-height:1.8
+}
+footer{text-align:center;padding:30px;color:#9db8d5;
+ background:#030b17;margin-top:50px}
+#message{
+ display:none;position:fixed;inset:0;background:#000b;
+ align-items:center;justify-content:center;padding:20px;z-index:5
+}
+.popup{background:#102b4c;border:1px solid #168cff;
+ border-radius:14px;padding:25px;max-width:420px;width:100%}
+.popup button{margin:6px 5px 0 0}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">THE HEIGHTS</div>
+ <p>OFFICIAL ROLEPLAY STORE</p>
+</header>
+
+<nav>
+ <a href="#housing">Housing</a>
+ <a href="#staff">Staff Ranks</a>
+ <a href="#money">Money</a>
+ <a href="#perks">Perks</a>
+ <a href="#special">Special</a>
+</nav>
+
+<div class="hero">
+ <h1>WELCOME TO THE HEIGHTS</h1>
+ <p>Explore the official Heights Store.</p>
+ <a class="btn" href="#shop">EXPLORE THE SHOP</a>
+</div>
+
+<main id="shop">
+<section id="housing">
+ <h2 class="section-title">🏠 HOUSING</h2>
+ <div class="products">
+  <div class="card"><h3>🏡 Small House</h3><div class="price">$10</div><button class="btn" onclick="buy('Small House','$10',true)">Purchase</button></div>
+  <div class="card"><h3>🏘️ Medium House</h3><div class="price">$13</div><button class="btn" onclick="buy('Medium House','$13',true)">Purchase</button></div>
+  <div class="card"><h3>🏰 Large House</h3><div class="price">$19</div><button class="btn" onclick="buy('Large House','$19',true)">Purchase</button></div>
+ </div>
+</section>
+
+<section id="staff">
+ <h2 class="section-title">👮 STAFF RANKS</h2>
+ <div class="products">
+  <div class="card"><h3>⭐ Moderator</h3><div class="price">$10</div><button class="btn" onclick="buy('Moderator','$10')">Purchase</button></div>
+  <div class="card"><h3>✔ Administrator</h3><div class="price">$20</div><button class="btn" onclick="buy('Administrator','$20')">Purchase</button></div>
+  <div class="card"><h3>🪂 Lead Administrator</h3><div class="price">$30</div><button class="btn" onclick="buy('Lead Administrator','$30')">Purchase</button></div>
+  <div class="card"><h3>⛷ Staff</h3><div class="price">$40</div><button class="btn" onclick="buy('Staff','$40')">Purchase</button></div>
+  <div class="card"><h3>🎓 Head Of Staff</h3><div class="price">$50</div><button class="btn" onclick="buy('Head Of Staff','$50')">Purchase</button></div>
+  <div class="card"><h3>🧑🏾‍🦱 Head Management</h3><div class="price">$60</div><button class="btn" onclick="buy('Head Management','$60')">Purchase</button></div>
+  <div class="card"><h3>⚡ Higher Up</h3><div class="price">$70</div><button class="btn" onclick="buy('Higher Up','$70')">Purchase</button></div>
+  <div class="card"><h3>📿 Rank Up</h3><div class="price">$10</div><button class="btn" onclick="buy('Rank Up','$10')">Purchase</button></div>
+  <div class="card"><h3>🎒 Gun Plug</h3><div class="price">$15</div><button class="btn" onclick="buy('Gun Plug','$15')">Purchase</button></div>
+ </div>
+</section>
+
+<section id="money">
+ <h2 class="section-title">💵 IN-GAME MONEY</h2>
+ <div class="products">
+  <div class="card"><h3>💰 100K</h3><div class="price">$5</div><button class="btn" onclick="buy('100K','$5')">Purchase</button></div>
+  <div class="card"><h3>💰 500K</h3><div class="price">$10</div><button class="btn" onclick="buy('500K','$10')">Purchase</button></div>
+  <div class="card"><h3>💰 1M</h3><div class="price">$20</div><button class="btn" onclick="buy('1M','$20')">Purchase</button></div>
+ </div>
+</section>
+
+<section id="perks">
+ <h2 class="section-title">⚙️ GAME PERKS</h2>
+ <div class="products">
+  <div class="card"><h3>🛡 TX Admin Permissions</h3><div class="price">$25</div><button class="btn" onclick="buy('TX Admin Permissions','$25')">Purchase</button></div>
+  <div class="card"><h3>🔫 Weapon Menu</h3><div class="price">$15</div><button class="btn" onclick="buy('Weapon Menu','$15')">Purchase</button></div>
+  <div class="card"><h3>🔓 Unlock All Skills</h3><div class="price">$10</div><button class="btn" onclick="buy('Unlock All Skills','$10')">Purchase</button></div>
+ </div>
+</section>
+
+<section id="special">
+ <h2 class="section-title">🎟️ SPECIAL PURCHASES</h2>
+ <div class="products">
+  <div class="card"><h3>🎫 Ticket Team</h3><div class="price">$25</div><button class="btn" onclick="buy('Ticket Team','$25')">Purchase</button></div>
+  <div class="card"><h3>👥 Faction Management</h3><div class="price">$15</div><button class="btn" onclick="buy('Faction Management','$15')">Purchase</button></div>
+  <div class="card"><h3>⭐ Custom Rank</h3><div class="price">$100</div><button class="btn" onclick="buy('Custom Rank','$100')">Purchase</button></div>
+  <div class="card"><h3>🔓 Unblacklist</h3><div class="price">$5</div><button class="btn" onclick="buy('Unblacklist','$5')">Purchase</button></div>
+  <div class="card"><h3>🚫 Unban</h3><div class="price">$5</div><button class="btn" onclick="buy('Unban','$5')">Purchase</button></div>
+  <div class="card"><h3>❌ Strike Removal</h3><div class="price">$5</div><button class="btn" onclick="buy('Strike Removal','$5')">Purchase</button></div>
+ </div>
+</section>
+</main>
+
+<section>
+ <h2 class="section-title">📌 PURCHASE INFORMATION</h2>
+ <div class="info">
+  • Select the product you want.<br>
+  • Follow the purchase instructions.<br>
+  • Save your confirmed payment receipt.<br>
+  • Open a Discord ticket for assistance and delivery.<br>
+  • Housing purchases always require a ticket.<br>
+  • No refunds after valid delivery, subject to applicable law.
+ </div>
+</section>
+
+<div id="message">
+ <div class="popup">
+  <h2 id="productName">Purchase</h2>
+  <p id="productPrice"></p>
+  <p id="instructions"></p>
+  <button class="btn" onclick="closePopup()">Close</button>
+ </div>
+</div>
+
+<footer>
+ <h2>THE HEIGHTS STORE</h2>
+ <p>THANK YOU FOR SHOPPING WITH US!</p>
+ <small>Official Heights Roleplay Store</small>
+</footer>
+
+<script>
+function buy(name,price,housing=false){
+ document.getElementById('productName').textContent=name;
+ document.getElementById('productPrice').textContent='Listed price: '+price;
+ document.getElementById('instructions').textContent=housing
+ ? 'Housing requires a purchase ticket. Please contact Heights management before making payment.'
+ : 'Follow the official approved purchase process for this product. Once payment is confirmed, save your receipt and open a Discord ticket for fulfilment and any eligible role assignment.';
+ document.getElementById('message').style.display='flex';
+}
+function closePopup(){
+ document.getElementById('message').style.display='none';
+}
+</script>
+</body>
+</html>
