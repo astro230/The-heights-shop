@@ -929,7 +929,7 @@ async function checkDiscordLogin() {
     );
 
     const data = await response.json();
-
+    alert(JSON.stringify(data));
     if (data.loggedIn) {
     document.querySelector(".discord-login-btn").textContent =
   "Signed in as " + data.user.username;
