@@ -1007,8 +1007,7 @@ async function loadCustomerOrders() {
     );
 
     if (!response.ok) {
-      container.textContent = "Unable to load orders yet.";
-      return;
+    container.textContent = "Orders error: HTTP " + response.status;
     }
 
     const data = await response.json();
