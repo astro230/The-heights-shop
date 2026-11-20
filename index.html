@@ -931,7 +931,8 @@ async function checkDiscordLogin() {
     const data = await response.json();
 
     if (data.loggedIn) {
-      console.log("Signed in as:", data.user.username);
+    document.querySelector(".discord-login-btn").textContent =
+  "Signed in as " + data.user.username;
       localStorage.setItem("discordUser", JSON.stringify(data.user));
     }
   } catch (error) {
