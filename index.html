@@ -921,22 +921,42 @@
     updateCart();
   </script>
 <script>
-async function checkDiscordLogin() {
+function showDiscordUser(user) {
   const button = document.querySelector(".discord-login-btn");
+  if (!button) return;
 
-  // Remember previously signed-in customer
+  button.innerHTML = "";
+
+  if (user.avatar) {
+    const avatar = document.createElement("img");
+    avatar.src =
+      `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`;
+
+    avatar.alt = "Discord avatar";
+    avatar.style.width = "30px";
+    avatar.style.height = "30px";
+    avatar.style.borderRadius = "50%";
+    avatar.style.objectFit = "cover";
+
+    button.appendChild(avatar);
+  }
+
+  const username = document.createElement("span");
+  username.textContent = user.global_name || user.username;
+  button.appendChild(username);
+}
+
+async function checkDiscordLogin() {
   const savedUser = localStorage.getItem("discordUser");
 
-  if (savedUser && button) {
+  if (savedUser) {
     try {
-      const user = JSON.parse(savedUser);
-      button.textContent = "Signed in as " + user.username;
+      showDiscordUser(JSON.parse(savedUser));
     } catch (error) {
       localStorage.removeItem("discordUser");
     }
   }
 
-  // Check for a new Discord login
   const params = new URLSearchParams(window.location.search);
   const code = params.get("discord_code");
 
@@ -962,17 +982,14 @@ async function checkDiscordLogin() {
         JSON.stringify(data.user)
       );
 
-      if (button) {
-        button.textContent = "Signed in as " + data.user.username;
-      }
-
+      showDiscordUser(data.user);
       window.history.replaceState({}, document.title, "/");
     } else {
       alert("Discord login failed. Please try again.");
     }
   } catch (error) {
     console.error("Discord login error:", error);
-    alert("Could not connect to Discord. Please try again.");
+    alert("Could not connect to Discord.");
   }
 }
 
