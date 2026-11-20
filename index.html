@@ -922,6 +922,21 @@
   </script>
 <script>
 async function checkDiscordLogin() {
+  const button = document.querySelector(".discord-login-btn");
+
+  // Remember previously signed-in customer
+  const savedUser = localStorage.getItem("discordUser");
+
+  if (savedUser && button) {
+    try {
+      const user = JSON.parse(savedUser);
+      button.textContent = "Signed in as " + user.username;
+    } catch (error) {
+      localStorage.removeItem("discordUser");
+    }
+  }
+
+  // Check for a new Discord login
   const params = new URLSearchParams(window.location.search);
   const code = params.get("discord_code");
 
@@ -942,26 +957,19 @@ async function checkDiscordLogin() {
     const data = await response.json();
 
     if (data.success && data.user) {
-      const button = document.querySelector(".discord-login-btn");
-
-      if (button) {
-        button.textContent = "Signed in as " + data.user.username;
-      }
-
       localStorage.setItem(
         "discordUser",
         JSON.stringify(data.user)
       );
 
-      window.history.replaceState(
-        {},
-        document.title,
-        "/"
-      );
+      if (button) {
+        button.textContent = "Signed in as " + data.user.username;
+      }
+
+      window.history.replaceState({}, document.title, "/");
     } else {
       alert("Discord login failed. Please try again.");
     }
-
   } catch (error) {
     console.error("Discord login error:", error);
     alert("Could not connect to Discord. Please try again.");
