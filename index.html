@@ -667,7 +667,30 @@
 
       <div class="product-grid" id="productGrid"></div>
     </section>
+     <section id="customer-dashboard" class="feature-section">
+  <div class="section-kicker">YOUR ACCOUNT</div>
+  <h2>Customer Dashboard.</h2>
+  <p class="section-description">
+    Manage your Heights Store account and keep track of your purchases.
+  </p>
 
+  <div class="step" style="margin-top:30px;">
+    <div id="dashboard-user">
+      <h3>Welcome to The Heights.</h3>
+      <p>Sign in with Discord to access your customer dashboard.</p>
+    </div>
+
+    <div style="margin-top:25px;">
+      <h3>Your Orders</h3>
+      <p style="color:#91a0b8;margin-top:10px;">
+        Your purchase history will appear here once orders are available.
+      </p>
+      <div id="customer-orders" style="margin-top:15px;">
+        <p style="color:#91a0b8;font-size:12px;">No orders yet.</p>
+      </div>
+    </div>
+  </div>
+</section>
     <section class="feature-section" id="how">
       <div class="section-kicker">THE PROCESS</div>
       <h2>How It Works.</h2>
@@ -921,29 +944,52 @@
     updateCart();
   </script>
 <script>
+
 function showDiscordUser(user) {
   const button = document.querySelector(".discord-login-btn");
-  if (!button) return;
 
-  button.innerHTML = "";
+  if (button) {
+    button.innerHTML = "";
 
-  if (user.avatar) {
-    const avatar = document.createElement("img");
-    avatar.src =
-      `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`;
+    if (user.avatar) {
+      const avatar = document.createElement("img");
+      avatar.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`;
+      avatar.alt = "Discord avatar";
+      avatar.style.width = "30px";
+      avatar.style.height = "30px";
+      avatar.style.borderRadius = "50%";
+      avatar.style.objectFit = "cover";
+      button.appendChild(avatar);
+    }
 
-    avatar.alt = "Discord avatar";
-    avatar.style.width = "30px";
-    avatar.style.height = "30px";
-    avatar.style.borderRadius = "50%";
-    avatar.style.objectFit = "cover";
-
-    button.appendChild(avatar);
+    const username = document.createElement("span");
+    username.textContent = user.global_name || user.username;
+    button.appendChild(username);
   }
 
-  const username = document.createElement("span");
-  username.textContent = user.global_name || user.username;
-  button.appendChild(username);
+  const dashboard = document.getElementById("dashboard-user");
+
+  if (dashboard) {
+    dashboard.innerHTML = "";
+
+    const heading = document.createElement("h3");
+    heading.textContent = "Welcome, " + (user.global_name || user.username);
+
+    const details = document.createElement("p");
+    details.textContent = "Discord account connected successfully.";
+    details.style.color = "#91a0b8";
+    details.style.marginTop = "10px";
+
+    const discordId = document.createElement("p");
+    discordId.textContent = "Discord ID: " + user.id;
+    discordId.style.color = "#91a0b8";
+    discordId.style.fontSize = "12px";
+    discordId.style.marginTop = "12px";
+
+    dashboard.appendChild(heading);
+    dashboard.appendChild(details);
+    dashboard.appendChild(discordId);
+  }
 }
 
 async function checkDiscordLogin() {
