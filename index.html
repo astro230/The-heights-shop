@@ -920,6 +920,26 @@
     renderProducts();
     updateCart();
   </script>
+<script>
+async function checkDiscordLogin() {
+  try {
+    const response = await fetch(
+      "https://the-heights-store-bot-production.up.railway.app/api/me",
+      { credentials: "include" }
+    );
 
+    const data = await response.json();
+
+    if (data.loggedIn) {
+      console.log("Signed in as:", data.user.username);
+      localStorage.setItem("discordUser", JSON.stringify(data.user));
+    }
+  } catch (error) {
+    console.error("Discord login check failed:", error);
+  }
+}
+
+checkDiscordLogin();
+</script>
 </body>
 </html>
