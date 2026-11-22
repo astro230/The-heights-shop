@@ -924,9 +924,24 @@
       document.body.style.overflow = "";
     }
 
-    function showPaymentNotice() {
-      showToast("Online checkout is coming soon.");
-    }
+    
+function showPaymentNotice() {
+  const totalElement = document.getElementById("cartTotal");
+  const total = totalElement ? totalElement.textContent : "$0.00";
+
+  const cashtag = "$liljackjack42";
+
+  const message = `Your order total is ${total}.
+
+Pay using Cash App:
+${cashtag}
+
+After paying, take a screenshot of your payment confirmation and submit it through our Discord support ticket system.
+
+Your order will only be processed after payment has been verified.`;
+
+  alert(message);
+}
 
     let toastTimer;
     function showToast(message) {
