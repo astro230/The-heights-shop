@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://the-heights-store-bot-production.up.railway.app/api/:path*"
+    },
+    {
+      "source": "/auth/:path*",
+      "destination": "https://the-heights-store-bot-production.up.railway.app/auth/:path*"
+    }
+  ]
+}
