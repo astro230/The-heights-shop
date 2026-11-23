@@ -1120,6 +1120,7 @@ async function checkDiscordLogin() {
       "https://the-heights-store-bot-production.up.railway.app/api/discord/consume",
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json"
         },
